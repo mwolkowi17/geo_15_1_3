@@ -29,8 +29,8 @@ const button_rzut = useTemplateRef('rzut1')
 const napisRuch = useTemplateRef('ruchGracza')
 
 onMounted(() => {
-   
-    if(props.ifButtonOnFocusMain2===true){
+
+    if (props.ifButtonOnFocusMain2 === true) {
         button_rzut.value.focus()
     }
 
@@ -115,7 +115,7 @@ const liczba_wpadek = ref(0)
 const wyrzuconaWartoscKostki = ref("Kostka - liczba oczek: " + (x + 1));
 
 async function kostka_click() {
-    if_ruch_gracza.value=true
+    if_ruch_gracza.value = true
     await nextTick()
 
     napisRuch.value.focus()
@@ -282,33 +282,33 @@ async function kostka_click() {
 }
 
 const koniecQuizu = () => {
-     if (krok_gracz1_na_planszy.value < 15) {
-    if_rzuc_kostka.value = true
-     if_ruch_gracza.value = false
+    if (krok_gracz1_na_planszy.value < 15) {
+        if_rzuc_kostka.value = true
+        if_ruch_gracza.value = false
 
-    const buttonRzutVis = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(document.querySelector(".rzut2"))
-        }, 300);
-    })
+        const buttonRzutVis = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(document.querySelector(".rzut2"))
+            }, 300);
+        })
 
-    //buttonRzutVis.then((res) => { res.focus() })
-}
+        //buttonRzutVis.then((res) => { res.focus() })
+    }
 
     if (krok_gracz1_na_planszy.value === 15) {
         if_rzuc_kostka.value = false
-         if_ruch_gracza.value = false
+        if_ruch_gracza.value = false
         console.log("plansza win!")
         emit('koniec-etap2')
-     
+
     }
 }
 
 const koniecQuizuFocusOn = () => {
-     if (krok_gracz1_na_planszy.value < 15) {
-    // if_rzuc_kostka.value = true
+    if (krok_gracz1_na_planszy.value < 15) {
+        // if_rzuc_kostka.value = true
 
-     napisRuch.value.focus()
+        napisRuch.value.focus()
         setTimeout(() => {
 
             if_rzuc_kostka.value = true
@@ -325,21 +325,21 @@ const koniecQuizuFocusOn = () => {
         // }, 2300) //było 2500 i było ok
 
 
-    // const buttonRzutVis = new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //         resolve(document.querySelector(".rzut2"))
-    //     }, 300);
-    // })
+        // const buttonRzutVis = new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //         resolve(document.querySelector(".rzut2"))
+        //     }, 300);
+        // })
 
-    // buttonRzutVis.then((res) => { res.focus() })
-}
-if(krok_gracz1_na_planszy.value === 15) {
+        // buttonRzutVis.then((res) => { res.focus() })
+    }
+    if (krok_gracz1_na_planszy.value === 15) {
         if_rzuc_kostka.value = false
         // if_ruch_gracza.value = false
-        console.log("plansza win focus!")  
+        console.log("plansza win focus!")
         ifFocusEmitGlobal.value = true
         emit('koniec-etap2-focus')
-}
+    }
 }
 
 const koniecPulapki = () => {
@@ -380,7 +380,7 @@ const koniecPulapkiFocusOn = () => {
 
     // buttonRzutVis.then((res) => { res.focus() })
 
-     napisRuch.value.focus()
+    napisRuch.value.focus()
     setTimeout(() => {
 
         if_rzuc_kostka.value = true
@@ -440,7 +440,7 @@ function clickWithMouse() {
 }
 </script>
 <template>
-    
+
     <div class="tlo2" role="img" aria-label="gra planszowa - poziom1">
         <h1 class="sr-only">Gra planszowa - poziom 2</h1>
         <div class="ikona-start" role="img" alt="">
@@ -460,11 +460,7 @@ function clickWithMouse() {
             <img class="szansa" v-if="if_szansa3" src="../assets/szansa.png">
             <img class="szansa" v-if="if_szansa4" src="../assets/szansa.png">
         </div>
-        <div class="ruch1" ref="ruchGracza" v-if="if_ruch_gracza" tabindex="0">
-            <p class="ruch-text">Ruch gracza</p>
-        </div>
-        <button  class="rzut1 my-button anim1" ref="rzut1" v-if="if_rzuc_kostka" @click="clickWithMouse"
-            @keydown.enter="clickWithFocus" role="button">Rzuć kostką</button>
+
         <div class="kostka" :class="{
             'kostka1image1': isSet1,
             'kostka1image2': isSet2,
@@ -473,14 +469,19 @@ function clickWithMouse() {
             'kostka1image5': isSet5,
             'kostka1image6': isSet6
         }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
-        </div>
+    </div>
+
+    <div class="ruch1" ref="ruchGracza" v-if="if_ruch_gracza" tabindex="0">
+        <p class="ruch-text">Ruch gracza</p>
+    </div>
+    <button class="rzut1 my-button anim1" ref="rzut1" v-if="if_rzuc_kostka" @click="clickWithMouse"
+        @keydown.enter="clickWithFocus" role="button">Rzuć kostką</button>
     <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()"
-            @koniec-pulapka-focus="if_widok_pulapki = false, koniecPulapkiFocusOn()"
-            :ifButtonOnFocusTrap="ifTrapFocusOn" />
-     <SceneQuizz2 v-if="if_widok_quizz2" @koniec-quizz="if_widok_quizz2 = false, koniecQuizu()"
+        @koniec-pulapka-focus="if_widok_pulapki = false, koniecPulapkiFocusOn()" :ifButtonOnFocusTrap="ifTrapFocusOn" />
+    <SceneQuizz2 v-if="if_widok_quizz2" @koniec-quizz="if_widok_quizz2 = false, koniecQuizu()"
         @koniec-quizz-focus="if_widok_quizz2 = false, koniecQuizuFocusOn()" @odejmij-szanse="odejmijSzanse" msg="Hej"
         :miejsceNaPlanszy="krok_gracz1_na_planszy" :ifButtonOnFocusQuizz2="ifQuizzFocusOn2" rel="preload" />
-   
+
 </template>
 
 <style scoped>
@@ -653,8 +654,8 @@ function clickWithMouse() {
     z-index: 2;
 }
 
-.rzut1:focus{
-     outline: 5px solid #e90808;
+.rzut1:focus {
+    outline: 5px solid #e90808;
 }
 
 .kostka {

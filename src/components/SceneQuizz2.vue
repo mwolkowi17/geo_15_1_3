@@ -194,7 +194,7 @@ async function sprawdzOdpowiedz() {
 </script>
 <template>
     <div class="planszaQuizz1 " :class="eksp1[quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).pytanie]"
-        role="img" aria-label="pytanie">
+         aria-label="pytanie">
         <h1 class="sr-only">Quizz</h1>
         <div class="pytanie1" ref="pytanie1" tabindex="0">{{
             quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc }}</div>

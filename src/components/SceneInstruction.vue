@@ -34,7 +34,8 @@ const textToDisplay5 =  "Powodzenia!"
 <template>
   <div class="tlo1" aria-label="Zasady gry">
     <div class="container">
-      <div class="info-instrukcja" ref="info-instrukcja" tabindex="0">
+      <div class="info-instrukcja" ref="info-instrukcja" tabindex="0" role="region"
+  aria-live="polite">
             <h1 class="instrukcja-title">Zasady gry</h1>
          <div class="container-instrukcja">
            <span class="instrukcja" v-html="textToDisplay"></span>

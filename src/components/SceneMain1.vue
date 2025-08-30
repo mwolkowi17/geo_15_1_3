@@ -6,6 +6,7 @@ import { Traps } from "../lib/traps";
 import SceneQuizz1 from './SceneQuizz1.vue';
 import SceneTrap from './SceneTrap.vue';
 
+
 const emit = defineEmits([
     "koniec-etap1",
     "przegrana",
@@ -484,11 +485,7 @@ function clickWithFocus() {
             <img class="szansa" v-if="if_szansa2" src="../assets/szansa.png">
             <img class="szansa" v-if="if_szansa3" src="../assets/szansa.png">
         </div>
-        <div class="ruch1" ref="ruchGracza" v-if="if_ruch_gracza" tabindex="0">
-            <p class="ruch-text">Ruch gracza</p>
-        </div>
-        <button  class="rzut1 my-button anim1" ref="rzut1" v-if="if_rzuc_kostka" @click="clickWithMouse"
-            @keydown.enter="clickWithFocus" role="button">Rzuć kostką</button>
+
         <div class="kostka" :class="{
             'kostka1image1': isSet1,
             'kostka1image2': isSet2,
@@ -497,14 +494,19 @@ function clickWithFocus() {
             'kostka1image5': isSet5,
             'kostka1image6': isSet6
         }" v-if="if_widok_kostki" role="img" alt="ikona widoku kostki" :aria-label=wyrzuconaWartoscKostki></div>
-        <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()"
-            @koniec-pulapka-focus="if_widok_pulapki = false, koniecPulapkiFocusOn()"
-            :ifButtonOnFocusTrap="ifTrapFocusOn" />
-        <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
-            @koniec-quizz-focus="if_widok_quizz1 = false, ifRzucKostkaButtonOnFocus = true, koniecQuizuFocusOn()"
-            @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy"
-            :ifButtonOnFocusQuizz1="ifQuizzFocusOn" />
+
     </div>
+    <div class="ruch1" ref="ruchGracza" v-if="if_ruch_gracza" tabindex="0">
+        <p class="ruch-text">Ruch gracza</p>
+    </div>
+    <button class="rzut1 my-button anim1" ref="rzut1" v-if="if_rzuc_kostka" @click="clickWithMouse"
+        @keydown.enter="clickWithFocus" role="button">Rzuć kostką</button>
+    <SceneTrap v-if="if_widok_pulapki" @koniec-pulapka="if_widok_pulapki = false, koniecPulapki()"
+        @koniec-pulapka-focus="if_widok_pulapki = false, koniecPulapkiFocusOn()" :ifButtonOnFocusTrap="ifTrapFocusOn" />
+    <SceneQuizz1 v-if="if_widok_quizz1" @koniec-quizz="if_widok_quizz1 = false, koniecQuizu()"
+        @koniec-quizz-focus="if_widok_quizz1 = false, ifRzucKostkaButtonOnFocus = true, koniecQuizuFocusOn()"
+        @odejmij-szanse="odejmijSzanse" msg="Hej" :miejsceNaPlanszy="krok_gracz1_na_planszy"
+        :ifButtonOnFocusQuizz1="ifQuizzFocusOn" />
 
 
 </template>
@@ -679,8 +681,8 @@ function clickWithFocus() {
     z-index: 2;
 }
 
-.rzut1:focus{
-     outline: 5px solid #e90808;
+.rzut1:focus {
+    outline: 5px solid #e90808;
 }
 
 .kostka {

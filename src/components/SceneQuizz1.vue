@@ -188,9 +188,11 @@ const pytanieToDisplay = (miejsce) => {
 </script>
 <template>
   <div class="planszaQuizz1 " :class="eksp1[quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).pytanie]"
-    role="img" alt="tło" aria-label="pytanie">
+    alt="tło" aria-label="pytanie">
     <h1 class="sr-only">Quizz</h1>
-    <div class="pytanie1" ref="pytanie1" v-html="pytanieToDisplay(props.miejsceNaPlanszy)" tabindex="0"></div>
+    <div class="pytanie1" ref="pytanie1" v-html="pytanieToDisplay(props.miejsceNaPlanszy)" tabindex="0" role="region"
+      aria-live="polite"></div>
+       <!-- :aria-label="quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).tresc"></div> -->
 
     <!-- <ul class="lista-odpowiedzi" role="presentation"> -->
     <ul class="lista-odpowiedzi" role="list">
@@ -200,13 +202,13 @@ const pytanieToDisplay = (miejsce) => {
           is_krzyzyk2 = false,
           if_button_dalej = true,
           zaznaczenie1()" @keydown.enter="is_krzyzyk1 = true,
-          is_krzyzyk2 = false,
-          if_button_dalej = true,
-          zaznaczenie1()">
-        
-        <div class="pole-zazn anim1" aria-label="zaznacz odpowiedź 1">
-           <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1 }" alt="zaznaczenie odpowiedzi"></span>
-        </div>
+            is_krzyzyk2 = false,
+            if_button_dalej = true,
+            zaznaczenie1()">
+
+          <div class="pole-zazn anim1" aria-label="zaznacz odpowiedź 1">
+            <span class="krzyzyk" :class="{ 'krzyzyk1': is_krzyzyk1 }" alt="zaznaczenie odpowiedzi"></span>
+          </div>
 
           <span class="odpowiedz anim1">{{
             quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][0] }}</span>
@@ -219,11 +221,11 @@ const pytanieToDisplay = (miejsce) => {
           is_krzyzyk1 = false,
           if_button_dalej = true,
           zaznaczenie2()" @keydown.enter="is_krzyzyk2 = true,
-          is_krzyzyk1 = false,
-          if_button_dalej = true,
-          zaznaczenie2()">
+            is_krzyzyk1 = false,
+            if_button_dalej = true,
+            zaznaczenie2()">
           <div class="pole-zazn anim1" aria-label="zaznacz odpowiedź 2">
-             <span class="krzyzyk" :class="{ 'krzyzyk2': is_krzyzyk2 }" alt="zaznaczenie odpowiedzi"></span>
+            <span class="krzyzyk" :class="{ 'krzyzyk2': is_krzyzyk2 }" alt="zaznaczenie odpowiedzi"></span>
           </div>
           <span class="odpowiedz anim1">{{
             quizz_assets_data.pokaz_zadanie_2(props.miejsceNaPlanszy).odpowiedz_text[nr_zestawu][1] }}</span>
@@ -372,21 +374,21 @@ const pytanieToDisplay = (miejsce) => {
 }
 
 .pytanie1:deep(.flaga-onz) {
- position: relative;
+  position: relative;
   width: 300px;
   height: 180px;
   margin-top: -5px;
 }
 
 .pytanie1:deep(.flaga-nato) {
-   position: relative;
+  position: relative;
   width: 300px;
   height: 180px;
   margin-top: -5px;
 }
 
 .pytanie1:deep(.flaga-unicef) {
-   position: relative;
+  position: relative;
   width: 300px;
   height: 180px;
   margin-top: -5px;
@@ -432,10 +434,9 @@ li {
   width: 81px;
   /* width: 1rem; */
   margin-right: 1rem;
-   box-sizing: border-box;
+  box-sizing: border-box;
   /* position: absolute; */
   flex: 0 0 auto
-
 }
 
 .pole-zazn:hover {
@@ -459,7 +460,7 @@ li {
   /* background-color: white; */
   /* position: absolute; */
   visibility: hidden;
-   display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
@@ -485,7 +486,7 @@ li {
   font-family: "Proxima Nova", sans-serif;
   /* white-space: nowrap; */
   /* position: absolute; */
- 
+
 
 }
 
@@ -501,9 +502,9 @@ li {
   left: 300px; */
   height: 87px;
   width: 394px;
- position: relative;
+  position: relative;
   z-index: 2;
- 
+
 }
 
 .button-dalej:hover {
